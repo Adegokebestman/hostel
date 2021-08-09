@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 10, 2019 at 10:01 AM
--- Server version: 10.1.24-MariaDB
--- PHP Version: 7.1.6
+-- Generation Time: Aug 08, 2021 at 10:02 PM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -33,7 +32,7 @@ CREATE TABLE `admin` (
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(300) NOT NULL,
-  `reg_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `reg_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `updation_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -54,7 +53,7 @@ CREATE TABLE `adminlog` (
   `id` int(11) NOT NULL,
   `adminid` int(11) NOT NULL,
   `ip` varbinary(16) NOT NULL,
-  `logintime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `logintime` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -68,7 +67,7 @@ CREATE TABLE `courses` (
   `course_code` varchar(255) NOT NULL,
   `course_sn` varchar(255) NOT NULL,
   `course_fn` varchar(255) NOT NULL,
-  `posting_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `posting_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -83,6 +82,29 @@ INSERT INTO `courses` (`id`, `course_code`, `course_sn`, `course_fn`, `posting_d
 (5, 'MCA565', 'MCA', 'Master of Computer Application', '2016-04-11 19:34:40'),
 (6, 'MBA75', 'MBA', 'Master of Business Administration', '2016-04-11 19:34:59'),
 (7, 'BE765', 'BE', 'Bachelor of Engineering', '2016-04-11 19:35:19');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hostelname`
+--
+
+CREATE TABLE `hostelname` (
+  `hostel_name` varchar(235) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `hostelname`
+--
+
+INSERT INTO `hostelname` (`hostel_name`) VALUES
+('NEW DANIEL HALL'),
+('DANIEL 1'),
+('HOUSE OF DANIEL'),
+('NEW ELIZABETH HALL'),
+('ELIZABETH 1'),
+('ELIZABETH 2'),
+('ELIZABETH 3');
 
 -- --------------------------------------------------------
 
@@ -118,7 +140,7 @@ CREATE TABLE `registration` (
   `pmntCity` varchar(500) NOT NULL,
   `pmnatetState` varchar(500) NOT NULL,
   `pmntPincode` int(11) NOT NULL,
-  `postingDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `postingDate` timestamp NOT NULL DEFAULT current_timestamp(),
   `updationDate` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -141,7 +163,7 @@ CREATE TABLE `rooms` (
   `seater` int(11) NOT NULL,
   `room_no` int(11) NOT NULL,
   `fees` int(11) NOT NULL,
-  `posting_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `posting_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -149,11 +171,15 @@ CREATE TABLE `rooms` (
 --
 
 INSERT INTO `rooms` (`id`, `seater`, `room_no`, `fees`, `posting_date`) VALUES
-(1, 5, 100, 8000, '2016-04-11 22:45:43'),
+(1, 6, 6, 0, '2021-07-29 02:18:15'),
 (2, 2, 201, 6000, '2016-04-12 01:30:47'),
 (3, 2, 200, 6000, '2016-04-12 01:30:58'),
 (4, 3, 112, 4000, '2016-04-12 01:31:07'),
-(5, 5, 132, 2000, '2016-04-12 01:31:15');
+(5, 5, 132, 2000, '2016-04-12 01:31:15'),
+(7, 4, 34, 0, '2021-07-29 02:13:24'),
+(54, 4, 16, 0, '2021-07-29 02:16:25'),
+(66, 2, 23, 0, '2021-07-29 02:15:33'),
+(100, 4, 1, 0, '2021-07-29 02:17:03');
 
 -- --------------------------------------------------------
 
@@ -221,7 +247,7 @@ CREATE TABLE `userlog` (
   `userIp` varbinary(16) NOT NULL,
   `city` varchar(255) NOT NULL,
   `country` varchar(255) NOT NULL,
-  `loginTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `loginTime` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -237,7 +263,33 @@ INSERT INTO `userlog` (`id`, `userId`, `userEmail`, `userIp`, `city`, `country`,
 (7, 10, 'test@gmail.com', 0x3a3a31, '', '', '2019-02-10 07:43:43'),
 (8, 21, 'flga@gmail.com', 0x3a3a31, '', '', '2019-02-10 08:49:33'),
 (9, 21, 'flga@gmail.com', 0x3a3a31, '', '', '2019-02-10 08:52:11'),
-(10, 21, 'flga@gmail.com', 0x3a3a31, '', '', '2019-02-10 08:54:58');
+(10, 21, 'flga@gmail.com', 0x3a3a31, '', '', '2019-02-10 08:54:58'),
+(11, 10, 'test@gmail.com', 0x3a3a31, '', '', '2021-07-10 16:48:02'),
+(12, 10, 'test@gmail.com', 0x3a3a31, '', '', '2021-07-10 17:17:38'),
+(13, 10, 'test@gmail.com', 0x3a3a31, '', '', '2021-07-14 08:40:29'),
+(14, 10, 'test@gmail.com', 0x3a3a31, '', '', '2021-07-14 08:55:50'),
+(15, 10, 'test@gmail.com', 0x3a3a31, '', '', '2021-07-14 08:55:56'),
+(16, 10, 'test@gmail.com', 0x3a3a31, '', '', '2021-07-14 08:56:03'),
+(17, 10, 'test@gmail.com', 0x3a3a31, '', '', '2021-07-14 09:20:09'),
+(18, 10, 'test@gmail.com', 0x3a3a31, '', '', '2021-07-14 10:10:55'),
+(19, 10, 'test@gmail.com', 0x3a3a31, '', '', '2021-07-14 22:07:47'),
+(20, 10, 'test@gmail.com', 0x3a3a31, '', '', '2021-07-14 22:09:20'),
+(21, 10, 'test@gmail.com', 0x3a3a31, '', '', '2021-07-16 10:23:31'),
+(22, 10, 'test@gmail.com', 0x3a3a31, '', '', '2021-07-17 10:31:37'),
+(23, 10, 'test@gmail.com', 0x3a3a31, '', '', '2021-07-27 14:33:19'),
+(24, 10, 'test@gmail.com', 0x3a3a31, '', '', '2021-07-27 15:06:20'),
+(25, 10, 'test@gmail.com', 0x3a3a31, '', '', '2021-07-28 10:21:23'),
+(26, 10, 'test@gmail.com', 0x3a3a31, '', '', '2021-07-28 11:26:40'),
+(27, 10, 'test@gmail.com', 0x3a3a31, '', '', '2021-07-28 11:26:58'),
+(28, 10, 'test@gmail.com', 0x3a3a31, '', '', '2021-07-28 11:36:50'),
+(29, 10, 'test@gmail.com', 0x3a3a31, '', '', '2021-07-28 21:19:57'),
+(30, 10, 'test@gmail.com', 0x3a3a31, '', '', '2021-07-28 22:15:56'),
+(31, 10, 'test@gmail.com', 0x3a3a31, '', '', '2021-07-28 22:20:49'),
+(32, 10, 'test@gmail.com', 0x3a3a31, '', '', '2021-07-29 02:26:00'),
+(33, 10, 'test@gmail.com', 0x3a3a31, '', '', '2021-07-29 12:11:57'),
+(34, 10, 'test@gmail.com', 0x3a3a31, '', '', '2021-07-29 12:12:43'),
+(35, 10, 'test@gmail.com', 0x3a3a31, '', '', '2021-07-29 12:12:48'),
+(36, 10, 'test@gmail.com', 0x3a3a31, '', '', '2021-08-07 12:34:40');
 
 -- --------------------------------------------------------
 
@@ -255,7 +307,7 @@ CREATE TABLE `userregistration` (
   `contactNo` bigint(20) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `regDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `regDate` timestamp NOT NULL DEFAULT current_timestamp(),
   `updationDate` varchar(45) NOT NULL,
   `passUdateDate` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -265,7 +317,7 @@ CREATE TABLE `userregistration` (
 --
 
 INSERT INTO `userregistration` (`id`, `regNo`, `firstName`, `middleName`, `lastName`, `gender`, `contactNo`, `email`, `password`, `regDate`, `updationDate`, `passUdateDate`) VALUES
-(10, '108061211', 'code', 'test', 'projects', 'male', 8467067344, 'test@gmail.com', 'Test@123', '2016-06-22 04:21:33', '23-06-2016 11:04:15', '22-06-2016 05:16:49'),
+(10, '17010301030', 'Ladapo', '', 'Daniel', 'male', 8467067344, 'test@gmail.com', 'ladapo', '2021-04-22 04:21:33', '29-07-2021 07:54:09', '22-06-2016 05:16:49'),
 (19, '102355', 'Harry', 'projects', 'Singh', 'male', 6786786786, 'Harry@gmail.com', '6786786786', '2016-06-26 16:33:36', '', ''),
 (20, '586952', 'Benjamin', '', 'projects', 'male', 8596185625, 'Benjamin@gmail.com', '8596185625', '2016-06-26 16:40:07', '', '');
 
@@ -324,36 +376,43 @@ ALTER TABLE `userregistration`
 --
 ALTER TABLE `admin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
 -- AUTO_INCREMENT for table `registration`
 --
 ALTER TABLE `registration`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
 --
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+
 --
 -- AUTO_INCREMENT for table `states`
 --
 ALTER TABLE `states`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+
 --
 -- AUTO_INCREMENT for table `userlog`
 --
 ALTER TABLE `userlog`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+
 --
 -- AUTO_INCREMENT for table `userregistration`
 --
 ALTER TABLE `userregistration`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;COMMIT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
